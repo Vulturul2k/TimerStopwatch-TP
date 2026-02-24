@@ -31,7 +31,7 @@ class LaptimeStopwatchTests {
     @DisplayName("LaptimeStopwatch: entry freezes lapTime = totalTime at moment of split")
     void testEntry() {
         reachLaptime(3); // totalTime was 3 at split
-        assertSame(LaptimeStopwatch.Instance(), c.currentState);
+        assertSame(LaptimeStopwatch.getInstance(), c.currentState);
         assertEquals(3, AbstractStopwatch.getLapTime());
     }
 
@@ -50,12 +50,12 @@ class LaptimeStopwatchTests {
     @DisplayName("LaptimeStopwatch: timeout returns to RunningStopwatch after 5 ticks")
     void testTimeout() {
         reachLaptime(2);
-        assertSame(LaptimeStopwatch.Instance(), c.currentState);
+        assertSame(LaptimeStopwatch.getInstance(), c.currentState);
         // tick 5 times to trigger timeout
         for (int i = 0; i < 5; i++) {
             c.tick();
         }
-        assertSame(RunningStopwatch.Instance(), c.currentState);
+        assertSame(RunningStopwatch.getInstance(), c.currentState);
     }
 
     @Test
@@ -70,7 +70,7 @@ class LaptimeStopwatchTests {
     void testUp() {
         reachLaptime(2);
         c.up(); // unsplit
-        assertSame(RunningStopwatch.Instance(), c.currentState);
+        assertSame(RunningStopwatch.getInstance(), c.currentState);
     }
 
     @Test

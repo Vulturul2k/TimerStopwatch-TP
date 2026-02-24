@@ -28,7 +28,7 @@ class TimerTests {
 		current = context.currentState;
 
 		assertEquals(Mode.timer, current.getMode());
-		assertSame(IdleTimer.Instance(), current);
+		assertSame(IdleTimer.getInstance(), current);
 		assertEquals(0, AbstractTimer.getTimer(), "For the value of timer we ");
 		assertEquals(0, AbstractTimer.getMemTimer(), "For the value of memTimer we ");
 	}
@@ -37,24 +37,24 @@ class TimerTests {
 	@DisplayName("AbstractTimer initial state is IdleTimer")
 	void testInitialAbstractTimer() {
 		// The initial state of composite state AbstractTimer should be IdleTimer
-		assertSame(AbstractTimer.Instance(), IdleTimer.Instance());
+		assertSame(AbstractTimer.getInstance(), IdleTimer.getInstance());
 	}
 
 	@Test
 	@DisplayName("ActiveTimer initial state is RunningTimer")
 	void testInitialActiveTimer() {
 		// The initial state of composite state ActiveTimer should be RunningTimer
-		assertSame(ActiveTimer.Instance(), RunningTimer.Instance());
+		assertSame(ActiveTimer.getInstance(), RunningTimer.getInstance());
 	}
 
 	@Test
 	@DisplayName("History state preserves last Timer state after mode switch")
 	void testHistoryState() {
-		current = AbstractTimer.Instance();
+		current = AbstractTimer.getInstance();
 		// after processing the left() event, we should arrive in the initial state of
 		// AbstractStopwatch
 		newState = current.left();
-		assertEquals(AbstractStopwatch.Instance(), newState);
+		assertEquals(AbstractStopwatch.getInstance(), newState);
 		/*
 		 * after another occurrence of the left() event, we should return to the
 		 * original state

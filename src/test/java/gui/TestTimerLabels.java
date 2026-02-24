@@ -20,11 +20,11 @@ class TestTimerLabels extends TestGUIAbstract {
 	@Test
 	@DisplayName("Button labels for all Timer states")
 	void testIdleTimerLabels() {
-		assertTimerLabels(IdleTimer.Instance());
-		assertTimerLabels(PausedTimer.Instance());
-		assertTimerLabels(RingingTimer.Instance());
-		assertTimerLabels(RunningTimer.Instance());
-		assertTimerLabels(SetTimer.Instance());
+		assertTimerLabels(IdleTimer.getInstance());
+		assertTimerLabels(PausedTimer.getInstance());
+		assertTimerLabels(RingingTimer.getInstance());
+		assertTimerLabels(RunningTimer.getInstance());
+		assertTimerLabels(SetTimer.getInstance());
 	}
 
 	@Test

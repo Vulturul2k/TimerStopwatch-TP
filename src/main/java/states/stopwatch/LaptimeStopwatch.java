@@ -9,14 +9,14 @@ public class LaptimeStopwatch extends ActiveStopwatch {
 	// use Singleton design pattern
     private LaptimeStopwatch() {};
     private static LaptimeStopwatch instance = null;
-    public static LaptimeStopwatch Instance() {
+    public static LaptimeStopwatch getInstance() {
         if(instance == null) instance = new LaptimeStopwatch();
         return instance;
     }
 
    @Override
    public ClockState up() {
-        return transition(RunningStopwatch.Instance());
+        return transition(RunningStopwatch.getInstance());
     }
     
     public String getUpText() { return "unsplit"; }
@@ -31,7 +31,7 @@ public class LaptimeStopwatch extends ActiveStopwatch {
     protected ClockState doIt() {   
     	totalTime++; // continue incrementing totalTime while displaying lapTime
         timeout--;
-        if (timeout == 0) { return transition(RunningStopwatch.Instance()); }
+        if (timeout == 0) { return transition(RunningStopwatch.getInstance()); }
         else { return this; }
     }
     

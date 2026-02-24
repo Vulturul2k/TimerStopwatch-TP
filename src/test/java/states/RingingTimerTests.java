@@ -32,9 +32,9 @@ class RingingTimerTests {
     @DisplayName("RingingTimer: doIt stays in RingingTimer (beeps)")
     void testDoIt() {
         reachRinging();
-        assertSame(RingingTimer.Instance(), c.currentState);
+        assertSame(RingingTimer.getInstance(), c.currentState);
         c.tick(); // doIt: beep, stay in RingingTimer
-        assertSame(RingingTimer.Instance(), c.currentState);
+        assertSame(RingingTimer.getInstance(), c.currentState);
     }
 
     @Test

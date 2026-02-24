@@ -7,7 +7,7 @@ public class IdleTimer extends AbstractTimer {
 	// use Singleton design pattern
 	private IdleTimer() {}; // make constructor invisible to clients
 	private static IdleTimer instance = null;
-	public static IdleTimer Instance() {
+	public static IdleTimer getInstance() {
 	    if(instance == null) instance = new IdleTimer();       
 	    return instance;
 	    }
@@ -16,7 +16,7 @@ public class IdleTimer extends AbstractTimer {
     public ClockState up() {
     	if (memTimer > 0) {
     		timer = memTimer; 
-    		return transition(ActiveTimer.Instance());
+    		return transition(ActiveTimer.getInstance());
     		}
     	else { return this; }
     }
@@ -25,7 +25,7 @@ public class IdleTimer extends AbstractTimer {
 
     @Override
     public ClockState right() {
-        return transition(SetTimer.Instance());
+        return transition(SetTimer.getInstance());
     }
     @Override
     public String getRightText() {return "set"; }

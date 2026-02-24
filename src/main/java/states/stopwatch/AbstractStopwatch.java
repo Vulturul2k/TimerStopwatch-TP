@@ -7,7 +7,7 @@ public abstract class AbstractStopwatch extends ClockState {
 
 	//This is a composite state, so we need to defer its
 	//creation to its initial substate ResetStopwatch
-	public static AbstractStopwatch initialState = ResetStopwatch.Instance();
+	public static AbstractStopwatch initialState = ResetStopwatch.getInstance();
 	public static AbstractStopwatch historyState;
 
 	// totalTime and lapTime need to be static, since their values
@@ -26,7 +26,7 @@ public abstract class AbstractStopwatch extends ClockState {
 
 	// use Singleton design pattern
     private static AbstractStopwatch instance = null;
-    public static AbstractStopwatch Instance() {
+    public static AbstractStopwatch getInstance() {
         if (instance == null) {
         	resetInitialValues(); // initialise the values of totalTime and lapTime
         	instance = initialState;

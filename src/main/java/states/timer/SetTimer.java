@@ -7,7 +7,7 @@ public class SetTimer extends AbstractTimer {
 	// use Singleton design pattern
 	private SetTimer() {}; // make constructor invisible to clients
     private static SetTimer instance = null;
-    static public SetTimer Instance() {
+    static public SetTimer getInstance() {
         if(instance == null) instance = new SetTimer();             
         return instance;
     }
@@ -32,7 +32,7 @@ public class SetTimer extends AbstractTimer {
 	
 	@Override
 	public ClockState right() {
-        return transition(IdleTimer.Instance());
+        return transition(IdleTimer.getInstance());
     }
     public String getRightText() { return "done"; }
 	    

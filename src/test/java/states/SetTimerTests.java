@@ -27,7 +27,7 @@ class SetTimerTests {
         assertEquals(5, AbstractTimer.getMemTimer());
         c.up();
         assertEquals(10, AbstractTimer.getMemTimer());
-        assertSame(SetTimer.Instance(), c.currentState);
+        assertSame(SetTimer.getInstance(), c.currentState);
     }
 
     @Test
@@ -45,7 +45,7 @@ class SetTimerTests {
     @DisplayName("SetTimer: right transitions back to IdleTimer")
     void testRight() {
         c.right();
-        assertSame(IdleTimer.Instance(), c.currentState);
+        assertSame(IdleTimer.getInstance(), c.currentState);
     }
 
     @Test
@@ -56,7 +56,7 @@ class SetTimerTests {
         assertEquals(1, AbstractTimer.getMemTimer());
         c.tick();
         assertEquals(2, AbstractTimer.getMemTimer());
-        assertSame(SetTimer.Instance(), c.currentState);
+        assertSame(SetTimer.getInstance(), c.currentState);
     }
 
     @Test

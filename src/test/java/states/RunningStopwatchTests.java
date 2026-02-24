@@ -27,7 +27,7 @@ class RunningStopwatchTests {
     @DisplayName("RunningStopwatch: doIt increments totalTime")
     void testDoIt() {
         startStopwatch();
-        assertSame(RunningStopwatch.Instance(), c.currentState);
+        assertSame(RunningStopwatch.getInstance(), c.currentState);
         assertEquals(0, AbstractStopwatch.getTotalTime());
         c.tick();
         assertEquals(1, AbstractStopwatch.getTotalTime());
@@ -43,7 +43,7 @@ class RunningStopwatchTests {
         c.tick();
         assertEquals(2, AbstractStopwatch.getTotalTime());
         c.right(); // reset
-        assertSame(ResetStopwatch.Instance(), c.currentState);
+        assertSame(ResetStopwatch.getInstance(), c.currentState);
     }
 
     @Test
@@ -52,7 +52,7 @@ class RunningStopwatchTests {
         startStopwatch();
         c.tick();
         c.up(); // split
-        assertSame(LaptimeStopwatch.Instance(), c.currentState);
+        assertSame(LaptimeStopwatch.getInstance(), c.currentState);
     }
 
     @Test

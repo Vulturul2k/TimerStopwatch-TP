@@ -33,12 +33,12 @@ class TestScenarios {
 	@Test
 	@DisplayName("Complete integration scenario: timer set, run, pause, stopwatch, history, ringing")
 	void completeScenario() {
-		assertEquals(IdleTimer.Instance(), c.currentState);
+		assertEquals(IdleTimer.getInstance(), c.currentState);
 		assertEquals(0, AbstractTimer.getMemTimer());
 
 		c.right(); // start incrementing the memTimer variable
 		c.tick();
-		assertSame(SetTimer.Instance(), c.currentState);
+		assertSame(SetTimer.getInstance(), c.currentState);
 		assertEquals(1, AbstractTimer.getMemTimer());
 		assertEquals(0, AbstractTimer.getTimer());
 
@@ -59,45 +59,45 @@ class TestScenarios {
 
 		c.up(); // pause the timer
 		c.tick();
-		assertSame(PausedTimer.Instance(), c.currentState);
+		assertSame(PausedTimer.getInstance(), c.currentState);
 		assertEquals(2, AbstractTimer.getMemTimer(), "value of memTimer ");
 		assertEquals(1, AbstractTimer.getTimer(), "value of timer ");
 
 		c.left(); // go to stopwatch mode
 		c.tick();
-		assertSame(ResetStopwatch.Instance(), c.currentState);
+		assertSame(ResetStopwatch.getInstance(), c.currentState);
 		assertEquals(0, AbstractStopwatch.getTotalTime(), "value of totalTime ");
 		assertEquals(0, AbstractStopwatch.getLapTime(), "value of lapTime ");
 
 		c.up(); // start running the stopwatch
 		c.tick();
-		assertSame(RunningStopwatch.Instance(), c.currentState);
+		assertSame(RunningStopwatch.getInstance(), c.currentState);
 		assertEquals(1, AbstractStopwatch.getTotalTime(), "value of totalTime ");
 		assertEquals(0, AbstractStopwatch.getLapTime(), "value of lapTime ");
 
 		c.up(); // record stopwatch laptime
 		c.tick();
-		assertSame(LaptimeStopwatch.Instance(), c.currentState);
+		assertSame(LaptimeStopwatch.getInstance(), c.currentState);
 		assertEquals(2, AbstractStopwatch.getTotalTime(), "value of totalTime ");
 		assertEquals(1, AbstractStopwatch.getLapTime(), "value of lapTime ");
 
 		c.left(); // go back to timer mode (remembering history state)
 		c.tick();
-		assertSame(PausedTimer.Instance(), c.currentState);
+		assertSame(PausedTimer.getInstance(), c.currentState);
 		assertEquals(2, AbstractTimer.getMemTimer(), "value of memTimer ");
 		assertEquals(1, AbstractTimer.getTimer(), "value of timer ");
 
 		c.up(); // continue running timer
-		assertSame(RunningTimer.Instance(), c.currentState);
+		assertSame(RunningTimer.getInstance(), c.currentState);
 		c.tick();
 		// automatic switch to ringing timer since timer has reached 0...
-		assertSame(RingingTimer.Instance(), c.currentState);
+		assertSame(RingingTimer.getInstance(), c.currentState);
 		assertEquals(2, AbstractTimer.getMemTimer(), "value of memTimer ");
 		assertEquals(0, AbstractTimer.getTimer(), "value of timer ");
 
 		c.right(); // return to idle timer state
 		c.tick();
-		assertSame(IdleTimer.Instance(), c.currentState);
+		assertSame(IdleTimer.getInstance(), c.currentState);
 		assertEquals(2, AbstractTimer.getMemTimer(), "value of memTimer ");
 		assertEquals(0, AbstractTimer.getTimer(), "value of timer ");
 	}
@@ -107,7 +107,7 @@ class TestScenarios {
 	@io.cucumber.java.en.Given("the chronometer is in its initial state")
 	public void the_chronometer_is_in_its_initial_state() {
 		assertNotNull(c);
-		assertSame(IdleTimer.Instance(), c.currentState);
+		assertSame(IdleTimer.getInstance(), c.currentState);
 	}
 
 	@io.cucumber.java.en.When("I press the left button")

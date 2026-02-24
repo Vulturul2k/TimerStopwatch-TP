@@ -35,7 +35,7 @@ class RunningTimerTests {
     @DisplayName("RunningTimer: doIt decrements timer each tick")
     void testDoItDecrement() {
         setTimerAndStart(1); // memTimer = 5, timer starts at 5
-        assertSame(RunningTimer.Instance(), c.currentState);
+        assertSame(RunningTimer.getInstance(), c.currentState);
         assertEquals(5, AbstractTimer.getTimer());
         c.tick();
         assertEquals(4, AbstractTimer.getTimer());
@@ -51,7 +51,7 @@ class RunningTimerTests {
         for (int i = 0; i < 5; i++) {
             c.tick();
         }
-        assertSame(RingingTimer.Instance(), c.currentState);
+        assertSame(RingingTimer.getInstance(), c.currentState);
         assertTrue(AbstractTimer.isRinging());
     }
 
@@ -69,7 +69,7 @@ class RunningTimerTests {
     void testUpToPaused() {
         setTimerAndStart(1);
         c.up();
-        assertSame(PausedTimer.Instance(), c.currentState);
+        assertSame(PausedTimer.getInstance(), c.currentState);
     }
 
     @Test
@@ -77,7 +77,7 @@ class RunningTimerTests {
     void testRightToIdle() {
         setTimerAndStart(1);
         c.right();
-        assertSame(IdleTimer.Instance(), c.currentState);
+        assertSame(IdleTimer.getInstance(), c.currentState);
     }
 
     @Test

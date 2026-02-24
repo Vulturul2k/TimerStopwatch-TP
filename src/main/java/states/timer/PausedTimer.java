@@ -7,14 +7,14 @@ public class PausedTimer extends ActiveTimer {
 	// use Singleton design pattern
 	private PausedTimer() {}; // make constructor invisible to clients
     private static PausedTimer instance = null;
-    public static PausedTimer Instance() {
+    public static PausedTimer getInstance() {
         if(instance == null) instance = new PausedTimer();        
         return instance;
     }
 
     @Override
     public ClockState up() {
-        return transition(RunningTimer.Instance());
+        return transition(RunningTimer.getInstance());
     }
     public String getUpText() { return "run"; }   
  
