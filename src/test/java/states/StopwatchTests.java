@@ -14,40 +14,48 @@ class StopwatchTests {
 
 	@BeforeEach
 	void setup() {
-        context = new Context(); // create the state machine context
-        AbstractStopwatch.resetInitialValues();
-        context.currentState = AbstractStopwatch.Instance();
+		context = new Context(); // create the state machine context
+		AbstractStopwatch.resetInitialValues();
+		context.currentState = AbstractStopwatch.Instance();
 	}
-		
+
 	@org.junit.jupiter.api.Test
+	@DisplayName("Initial state should be ResetStopwatch with totalTime and lapTime at 0")
 	void testInitialState() {
-		//context.tick(); //no tick() needed for this test;
-		/* When initialising the context (see setup() method above)
+		// context.tick(); //no tick() needed for this test;
+		/*
+		 * When initialising the context (see setup() method above)
 		 * its currentState will be inialised with the initial state
 		 * of timer, i.e. the IdleTimer state.
 		 */
 		current = context.currentState;
-		
-	    assertEquals(Mode.stopwatch, current.getMode());
-	    assertSame(ResetStopwatch.Instance(), current);
-	    assertEquals(0, AbstractStopwatch.getTotalTime(),"For the value of totalTime we ");
-	    assertEquals(0, AbstractStopwatch.getLapTime(),"For the value of lapTime we ");
+
+		assertEquals(Mode.stopwatch, current.getMode());
+		assertSame(ResetStopwatch.Instance(), current);
+		assertEquals(0, AbstractStopwatch.getTotalTime(), "For the value of totalTime we ");
+		assertEquals(0, AbstractStopwatch.getLapTime(), "For the value of lapTime we ");
 	}
 
 	@org.junit.jupiter.api.Test
+	@DisplayName("AbstractStopwatch initial state is ResetStopwatch")
 	void testInitialAbstractStopwatch() {
-		// The initial state of composite state AbstractStopwatch should be ResetStopwatch
+		// The initial state of composite state AbstractStopwatch should be
+		// ResetStopwatch
 		assertSame(AbstractStopwatch.Instance(), ResetStopwatch.Instance());
 	}
-	
+
 	@Test
+	@DisplayName("History state preserves last Stopwatch state after mode switch")
 	void testHistoryState() {
 		current = AbstractStopwatch.Instance();
-		// after processing the left() event, we should arrive in the initial state of AbstractStopwatch
+		// after processing the left() event, we should arrive in the initial state of
+		// AbstractStopwatch
 		newState = current.left();
 		assertEquals(AbstractTimer.Instance(), newState);
-		/* after another occurrence of the left() event, we should return to the original state
-		 * because we used history states		
+		/*
+		 * after another occurrence of the left() event, we should return to the
+		 * original state
+		 * because we used history states
 		 */
 		assertEquals(current, newState.left());
 	}
